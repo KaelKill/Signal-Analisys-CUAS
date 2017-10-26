@@ -7,7 +7,7 @@ fs = 400;
 dt = 1/fs;
 n = 0:dt:199*dt;
 
-x = 330*sin(2*pi*50*n) + 22*sin(2*pi*70*n) + 154*sin(2*pi*20*n);
+x = 330*sin(2*pi*50*n);
 
 plot(n, x)
 

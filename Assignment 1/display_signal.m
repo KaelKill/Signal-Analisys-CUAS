@@ -4,10 +4,8 @@ function display_signal(filename)
   
     close all, clc
     
-%     load(filename,'x','fs');
-    [x, fs] = audioread(filename);
+    load(filename,'x','fs');
     N = length(x); % number of samples
-
     timestep = 1/fs;
     t = 0:timestep:(N-1)*timestep;
 
@@ -32,6 +30,7 @@ function display_signal(filename)
     figure
     Xpower = (Xamp.^2);
     Xpowerdb = mag2db(Xpower);
+  
     pmin = min(Xpowerdb)
     pmax = max(Xpowerdb)
     for i = 1:length(Xpowerdb)
