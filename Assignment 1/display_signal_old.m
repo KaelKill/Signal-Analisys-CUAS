@@ -1,4 +1,4 @@
-function display_signal(filename)
+ function display_signal(filename)
     % Display waveform, magnitude, phase and 
     % power spectrum for a input signal
   
@@ -28,24 +28,19 @@ function display_signal(filename)
     xlabel('f (Hz)'),ylabel('Phase(f)')
 
     figure
-    Xpower = (Xamp.^2);
+    Xpower = round((Xamp.^2));
     Xpowerdb = mag2db(Xpower);
-  
-    pmin = min(Xpowerdb)
-    pmax = max(Xpowerdb)
-    for i = 1:length(Xpowerdb)
-        if(Xpowerdb(i) < 0)
-            Xpowerdb(i) = 0;
-        end
-    end
-    
+    Xpowerdb(isinf(Xpowerdb)) = 10^-3;
+    Xpowerdb(Xpowerdb==0) = 0
+   
     subplot(2,1,1)
     stem(f,Xpower),title('Power Spectrum')
     xlabel('f (Hz)'),ylabel('Power')
     subplot(2,1,2)
-    semilogy(f,Xpowerdb,'o'),title('Power Spetrum - dB')
-    axis([0 N round(pmax/10, 3) 2*ceil(pmax)])
+    stem(f,Xpowerdb),title('Power Spetrum - dB')
+%     axis([0 N round(pmax/10, 3) 2*ceil(pmax)])
     xlabel('f (Hz)'),ylabel('Power/db'),grid on
     ax = gca;
+    set(gca,'YScal', 'log')
     ax.YAxis.TickLabelFormat = '%g/dB'; 
-  end
+%  end
