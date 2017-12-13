@@ -51,6 +51,4 @@ ylabel('Magnitude [db]'), xlabel('Frequency [Hz]')
 xlim([0 N])
 ax = gca;
 ax.YAxis.TickLabelFormat = '%g/dB';
-
-
 end
